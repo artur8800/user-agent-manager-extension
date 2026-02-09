@@ -8,9 +8,14 @@ import { formatRule } from './rules';
 
   const oldRules = await dnrManger.getRules();
   const oldRuleIds = oldRules.map((rule) => rule.id);
+
   const activeUa = uaCatalog.getActiveUa(oldRules[0]);
 
   console.log('Current active UA:', activeUa);
+
+  const formattedList = uaCatalog.formatUaList();
+
+  console.log('Formatted UA List:', formattedList);
 
   await chrome.declarativeNetRequest.updateDynamicRules({
     removeRuleIds: oldRuleIds,

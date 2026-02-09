@@ -1,3 +1,4 @@
+import { UAParser } from 'ua-parser-js';
 import mobileList from '@/lib/ua-lists/ua-mobile.json';
 import desktopList from '@/lib/ua-lists/ua-desktop.json';
 
@@ -36,6 +37,20 @@ class UserAgentCatalog {
       }
     }
     return null;
+  }
+
+  formatUaList() {
+    return [...this.mobileList, ...this.desktopList].map((item) => {
+      const uaParser = new UAParser();
+
+      return {
+        ua: item.ua,
+        pct: item.pct,
+        browser: uaParser.setUA(item.ua).getBrowser(),
+        os: uaParser.getOS(),
+        device: uaParser.getDevice(),
+      };
+    });
   }
 }
 
