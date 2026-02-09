@@ -26,10 +26,10 @@ class DNetRequestManager {
   async getRules() {
     try {
       const rules = await chrome.declarativeNetRequest.getDynamicRules();
-      console.log("Current dynamic rules:", rules);
+      console.log('Current dynamic rules:', rules);
       return rules;
     } catch (error) {
-      console.error("Failed to get dynamic rules:", error);
+      console.error('Failed to get dynamic rules:', error);
       return [];
     }
   }
