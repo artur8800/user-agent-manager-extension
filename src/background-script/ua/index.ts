@@ -1,25 +1,31 @@
 import mobileList from '@/lib/ua-lists/ua-mobile.json';
 import desktopList from '@/lib/ua-lists/ua-desktop.json';
 
-class UserAgent {
+type UAList = {
+  ua: string;
+  pct: number;
+};
+
+class UserAgentCatalog {
+  mobileList: UAList[];
+  desktopList: UAList[];
+
   constructor() {
     this.mobileList = mobileList;
     this.desktopList = desktopList;
   }
 
-  static log() {
-    console.log('UserAgent class initialized with mobile and desktop lists.');
-    console.log('Mobile User Agents:', mobileList);
-    console.log('Desktop User Agents:', desktopList);
+  public static log() {
+    console.log([...mobileList, ...desktopList]);
   }
 
-  static getMobileList() {
-    return mobileList;
+  getMobileList() {
+    return this.mobileList;
   }
 
-  static getDesktopList() {
-    return desktopList;
+  getDesktopList() {
+    return this.desktopList;
   }
 }
 
-export default UserAgent;
+export default UserAgentCatalog;

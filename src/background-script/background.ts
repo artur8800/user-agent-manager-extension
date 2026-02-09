@@ -1,7 +1,7 @@
-import UserAgent from './ua';
+import UserAgentCatalog from './ua';
 
 (async () => {
-  UserAgent.log();
+  UserAgentCatalog.log();
 
   const oldRules = await chrome.declarativeNetRequest.getDynamicRules();
   const oldRuleIds = oldRules.map((rule) => rule.id);
