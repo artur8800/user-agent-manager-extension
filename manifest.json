@@ -12,11 +12,6 @@
       "matches": ["<all_urls>"]
     }
   ],
-  "permissions": [
-    "declarativeNetRequest",
-    "declarativeNetRequestFeedback"
-  ],
-  "host_permissions": [
-    "<all_urls>"
-  ]
+  "permissions": ["declarativeNetRequest", "declarativeNetRequestFeedback"],
+  "host_permissions": ["<all_urls>"]
 }
