@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import type { Variants } from "motion/react";
-import { motion, useAnimation } from "motion/react";
-import type { HTMLAttributes } from "react";
-import { forwardRef, useCallback, useImperativeHandle, useRef } from "react";
+import type { Variants } from 'motion/react';
+import { motion, useAnimation } from 'motion/react';
+import type { HTMLAttributes } from 'react';
+import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react';
 
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
 export interface CalendarCogIconHandle {
   startAnimation: () => void;
@@ -30,8 +30,8 @@ const CalendarCogIcon = forwardRef<CalendarCogIconHandle, CalendarCogIconProps>(
       isControlledRef.current = true;
 
       return {
-        startAnimation: () => controls.start("animate"),
-        stopAnimation: () => controls.start("normal"),
+        startAnimation: () => controls.start('animate'),
+        stopAnimation: () => controls.start('normal'),
       };
     });
 
@@ -40,10 +40,10 @@ const CalendarCogIcon = forwardRef<CalendarCogIconHandle, CalendarCogIconProps>(
         if (isControlledRef.current) {
           onMouseEnter?.(e);
         } else {
-          controls.start("animate");
+          controls.start('animate');
         }
       },
-      [controls, onMouseEnter],
+      [controls, onMouseEnter]
     );
 
     const handleMouseLeave = useCallback(
@@ -51,19 +51,14 @@ const CalendarCogIcon = forwardRef<CalendarCogIconHandle, CalendarCogIconProps>(
         if (isControlledRef.current) {
           onMouseLeave?.(e);
         } else {
-          controls.start("normal");
+          controls.start('normal');
         }
       },
-      [controls, onMouseLeave],
+      [controls, onMouseLeave]
     );
 
     return (
-      <div
-        className={cn(className)}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        {...props}
-      >
+      <div className={cn(className)} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} {...props}>
         <svg
           fill="none"
           height={size}
@@ -81,7 +76,7 @@ const CalendarCogIcon = forwardRef<CalendarCogIconHandle, CalendarCogIconProps>(
           <path d="M8 2v4" />
           <motion.g
             animate={controls}
-            transition={{ type: "spring", stiffness: 50, damping: 10 }}
+            transition={{ type: 'spring', stiffness: 50, damping: 10 }}
             variants={G_VARIANTS}
           >
             <path d="m15.2 16.9-.9-.4" />
@@ -97,9 +92,9 @@ const CalendarCogIcon = forwardRef<CalendarCogIconHandle, CalendarCogIconProps>(
         </svg>
       </div>
     );
-  },
+  }
 );
 
-CalendarCogIcon.displayName = "CalendarCogIcon";
+CalendarCogIcon.displayName = 'CalendarCogIcon';
 
 export { CalendarCogIcon };
