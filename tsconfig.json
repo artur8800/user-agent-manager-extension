@@ -21,9 +21,10 @@
     "noFallthroughCasesInSwitch": true,
     "paths": {
       "@/*": ["./src/*"],
-    }
+    },
+    "types": ["chrome"]
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }],
-  "types": ["chrome"]
+ 
 }
