@@ -1,5 +1,9 @@
 (async () => {
+  const oldRules = await chrome.declarativeNetRequest.getDynamicRules();
+  const oldRuleIds = oldRules.map((rule) => rule.id);
+
   await chrome.declarativeNetRequest.updateDynamicRules({
+    removeRuleIds: oldRuleIds,
     addRules: [
       {
         id: 1,
@@ -11,7 +15,7 @@
               header: "user-agent",
               operation: "set",
               value:
-                "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Mobile Safari/537.36",
+                "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.4.2.0 Mobile Safari/537.36",
             },
           ],
         },
