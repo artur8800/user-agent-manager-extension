@@ -15,7 +15,7 @@
   "aliases": {
     "components": "@/pop-up/components",
     "utils": "@/lib/utils",
-    "ui": "@/pop-up/components/ui",
+    "ui": "@/pop-up/components/ui/atoms",
     "lib": "@/lib",
     "hooks": "@/hooks"
   },
