@@ -15,7 +15,7 @@ class UserAgentCatalog {
     this.desktopList = desktopList;
   }
 
-  public static log() {
+  log() {
     console.log([...mobileList, ...desktopList]);
   }
 
@@ -25,6 +25,17 @@ class UserAgentCatalog {
 
   getDesktopList() {
     return this.desktopList;
+  }
+
+  getActiveUa(rule: chrome.declarativeNetRequest.Rule) {
+    if (rule?.action?.type === 'modifyHeaders') {
+      const headers = rule.action.requestHeaders;
+      if (headers && headers.length > 0) {
+        const uaHeader = headers.find((h) => h.header === 'user-agent');
+        return uaHeader?.value || null;
+      }
+    }
+    return null;
   }
 }
 
