@@ -1,3 +1,5 @@
+'use client';
+
 import './App.css';
 import AppBar from './ui/molecules/app-bar';
 import logo from '@/assets/logo.svg';
