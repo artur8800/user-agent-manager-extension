@@ -7,10 +7,10 @@ export default {
   theme: {
     extend: {
       width: {
-        'screen-400': '425px',
+        'screen-600': '600px',
       },
       minHeight: {
-        'screen-min': '500px',
+        'screen-min': '600px',
       },
       maxHeight: {
         'screen-max': '1024px',
