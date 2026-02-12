@@ -1,10 +1,14 @@
-import AppUaInfo from '@/pop-up/components/features/app-ua-info';
+import AppUaInfo from '@/pop-up/components/entities/app-ua-info';
 import { useState } from 'react';
+import { AppUaTable } from '../../entities/app-ua-table';
 
 function ViewToggle() {
   const [viewState, setViewState] = useState<'info' | 'table'>('info');
+  const handleChangeView = (state: 'info' | 'table') => {
+    setViewState(state);
+  };
 
-  return viewState === 'info' ? <AppUaInfo buttonCallback={() => setViewState('table')} /> : <div />;
+  return viewState === 'info' ? <AppUaInfo buttonCallback={() => handleChangeView('table')} /> : <AppUaTable />;
 }
 
 export default ViewToggle;
