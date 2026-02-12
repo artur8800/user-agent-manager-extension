@@ -37,6 +37,21 @@ class AppStorage {
     });
   }
 
+  getItems<T>(key: string): Promise<T | null> {
+    return new Promise((resolve) => {
+      this.instance.get([key], (result: { [key: string]: T }) => {
+        if (chrome.runtime.lastError) {
+          AppLogger.error('Error retrieving item from storage:', chrome.runtime.lastError);
+          resolve(null);
+        } else {
+          const value = result[key];
+          AppLogger.log(`Item retrieved from storage: ${key} = ${value}`);
+          resolve(value);
+        }
+      });
+    });
+  }
+
   init<T>({ defaultData, storageKey }: { defaultData: T; storageKey?: string }) {
     return new Promise((resolve) => {
       this.instance.get(null, (data: { [key: string]: [T] }) => {

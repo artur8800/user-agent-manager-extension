@@ -1,4 +1,7 @@
-export default interface UserAgentItem {}
+export default interface UserAgentItem {
+  ua: string;
+}
+
 export default interface UserAgentItemFormated {
   value: string;
   browser: string;
