@@ -1,6 +1,8 @@
 import './App.css';
-import AppBar from './ui/molecules/app-bar';
+
 import logo from '@/assets/logo.svg';
+
+import AppBar from './ui/molecules/app-bar';
 import ViewToggle from './widgets/view-toggle';
 
 function App() {

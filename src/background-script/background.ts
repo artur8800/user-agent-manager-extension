@@ -1,7 +1,7 @@
-import UserAgentCatalog from './ua';
 import DNetRequestManager from './dnet-request';
 import { formatRule } from './rules';
 import AppStorage from './storage';
+import UserAgentCatalog from './ua';
 
 (async () => {
   const dnrManger = new DNetRequestManager();
