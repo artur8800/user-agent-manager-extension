@@ -28,7 +28,7 @@ import AppStorage from './storage';
     ],
   });
 
-  await storage.init();
+  await storage.init<unknown[]>({ defaultData: formattedList });
 
   console.log('Dynamic rule added successfully.');
 })();
