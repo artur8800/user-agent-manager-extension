@@ -1,5 +1,3 @@
-'use client';
-
 interface AppBarProps {
   logo: string;
 }
