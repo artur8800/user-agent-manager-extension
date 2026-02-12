@@ -6,12 +6,6 @@
   "background": {
     "service_worker": "src/background-script/background.ts"
   },
-  "content_scripts": [
-    {
-      "js": ["src/content-script/content.tsx"],
-      "matches": ["<all_urls>"]
-    }
-  ],
-  "permissions": ["declarativeNetRequest", "declarativeNetRequestFeedback"],
+  "permissions": ["declarativeNetRequest", "declarativeNetRequestFeedback", "storage"],
   "host_permissions": ["<all_urls>"]
 }
