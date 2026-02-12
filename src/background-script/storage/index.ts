@@ -50,7 +50,7 @@ class AppStorage {
             AppLogger.log(`Storage initialized with default data under key "${keyToCheck}".`);
           }
           resolve(true);
-          AppLogger.log('Data already exists in storage, initialization skipped.');
+          AppLogger.log('Data already exists in storage, initialization skipped.', data[keyToCheck]);
         }
       });
     });
