@@ -1,10 +1,12 @@
 import UserAgentCatalog from './ua';
 import DNetRequestManager from './dnet-request';
 import { formatRule } from './rules';
+import AppStorage from './storage';
 
 (async () => {
   const dnrManger = new DNetRequestManager();
   const uaCatalog = new UserAgentCatalog();
+  const storage = new AppStorage();
 
   const oldRules = await dnrManger.getRules();
   const oldRuleIds = oldRules.map((rule) => rule.id);
@@ -25,6 +27,8 @@ import { formatRule } from './rules';
       ),
     ],
   });
+
+  await storage.init();
 
   console.log('Dynamic rule added successfully.');
 })();
