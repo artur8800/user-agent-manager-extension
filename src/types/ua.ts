@@ -1,8 +1,9 @@
-export default interface UserAgentItem {}
-export default interface UserAgentItemFormated {
-  value: string;
-  browser: string;
-  os: string;
-  isFavorite: boolean;
-  deviceType: string;
+import { IBrowser, IDevice, IOS } from 'ua-parser-js';
+
+export default interface UserAgentItem {
+  ua: string;
+  browser: IBrowser;
+  os: IOS;
+  device: IDevice;
+  pct: number;
 }
