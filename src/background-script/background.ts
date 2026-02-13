@@ -37,12 +37,12 @@ import UserAgentCatalog from './ua';
 
   console.log('Dynamic rule added successfully.');
 
-  AppMessageSenderInstance.initMessageListener<UserAgentItem>(async (message, payload) => {
+  AppMessageSenderInstance.initMessageListener<UserAgentItem[] | undefined>(async (message, payload) => {
     if (message === 'GET_USER_AGENTS') {
       const userAgents = await storage.getItems<UserAgentItem[]>('userAgents');
-      AppMessageSenderInstance.sendMessage('GET_USER_AGENTS', userAgents);
+      return userAgents || [];
     } else if (message === 'ADD_USER_AGENT' && typeof payload === 'string') {
-      AppMessageSenderInstance.sendMessage('ADD_USER_AGENT', { success: true });
+      AppMessageSenderInstance.sendMessage('ADD_USER_AGENT');
     }
   });
 })();
