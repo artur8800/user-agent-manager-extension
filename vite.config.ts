@@ -15,6 +15,13 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src'),
       '@lib': path.resolve(__dirname, './src/lib'),
+      '@components': path.resolve(__dirname, './src/pop-up/components'),
+      '@features': path.resolve(__dirname, './src/pop-up/components/features'),
+      '@widgets': path.resolve(__dirname, './src/pop-up/components/widgets'),
+      '@entities': path.resolve(__dirname, './src/pop-up/components/entities'),
+      '@pop-up': path.resolve(__dirname, './src/pop-up'),
+      '@background-script': path.resolve(__dirname, './src/background-script'),
+      '@types': path.resolve(__dirname, './src/types'),
     },
   },
 });

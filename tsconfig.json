@@ -22,7 +22,14 @@
     "noFallthroughCasesInSwitch": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@lib/*": ["./src/lib/*"]
+      "@lib/*": ["./src/lib/*"],
+      "@components/*": ["./src/popop-up/components/*"],
+      "@features/*": ["./src/pop-up/components/features/*"],
+      "@widgets/*": ["./src/pop-up/components/widgets/*"],
+      "@entities/*": ["./src/pop-up/components/entities/*"],
+      "@pop-up/*": ["./src/pop-up/*"],
+      "@background-script/*": ["./src/background-script/*"],
+      "@types/*": ["./src/types/*"]
     },
     "types": ["chrome"]
   },
