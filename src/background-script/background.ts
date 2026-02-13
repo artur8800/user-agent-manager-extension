@@ -1,4 +1,4 @@
-import { AppMessageSender } from './../lib/messages/index';
+import { AppMessageSender } from '@lib/messages/index';
 import UserAgentCatalog from './ua';
 import DNetRequestManager from './dnet-request';
 import { formatRule } from './rules';
