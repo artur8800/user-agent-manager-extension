@@ -1,9 +1,11 @@
 import { AppMessageSender } from '@lib/messages/index';
-import UserAgentCatalog from './ua';
+
+import UserAgentItem from '@/types/ua';
+
 import DNetRequestManager from './dnet-request';
 import { formatRule } from './rules';
 import AppStorage from './storage';
-import UserAgentItem from '@/types/ua';
+import UserAgentCatalog from './ua';
 
 (async () => {
   const dnrManger = new DNetRequestManager();

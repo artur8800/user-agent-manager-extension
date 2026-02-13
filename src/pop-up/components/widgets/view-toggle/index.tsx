@@ -1,6 +1,6 @@
 import AppUaInfo from '@entities/app-ua-info';
-import { useState } from 'react';
 import { AppUaTable } from '@entities/app-ua-table';
+import { useState } from 'react';
 
 function ViewToggle() {
   const [viewState, setViewState] = useState<'info' | 'table'>('info');
