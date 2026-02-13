@@ -3,6 +3,7 @@ import UserAgentCatalog from './ua';
 import DNetRequestManager from './dnet-request';
 import { formatRule } from './rules';
 import AppStorage from './storage';
+import UserAgentItem from '@/types/ua';
 
 (async () => {
   const dnrManger = new DNetRequestManager();
@@ -34,9 +35,9 @@ import AppStorage from './storage';
 
   console.log('Dynamic rule added successfully.');
 
-  AppMessageSenderInstance.initMessageListener(async (message, payload) => {
+  AppMessageSenderInstance.initMessageListener<UserAgentItem>(async (message, payload) => {
     if (message === 'GET_USER_AGENTS') {
-      const userAgents = await storage.getItems<unknown[]>('userAgents');
+      const userAgents = await storage.getItems<UserAgentItem[]>('userAgents');
       AppMessageSenderInstance.sendMessage('GET_USER_AGENTS', userAgents);
     } else if (message === 'ADD_USER_AGENT' && typeof payload === 'string') {
       AppMessageSenderInstance.sendMessage('ADD_USER_AGENT', { success: true });

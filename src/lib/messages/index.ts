@@ -14,7 +14,7 @@ export class AppMessageSender {
     });
   }
 
-  initMessageListener(callback: (message: MESSAGE_TYPES, payload?: unknown) => void) {
+  initMessageListener<T>(callback: (message: MESSAGE_TYPES, payload?: T) => void) {
     chrome.runtime.onMessage.addListener((request, _, sendResponse) => {
       callback(request.message, request.payload);
       sendResponse({ status: 'received' });
