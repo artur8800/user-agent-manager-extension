@@ -1,6 +1,6 @@
-import { Item, ItemActions, ItemContent, ItemMedia, ItemTitle } from '@/pop-up/components/ui/atoms/item';
-import { Button } from '@/pop-up/components/ui/atoms/button';
 import { BadgeAlertIcon } from '@/pop-up/components/ui/atoms/badge-alert';
+import { Button } from '@/pop-up/components/ui/atoms/button';
+import { Item, ItemActions, ItemContent, ItemMedia, ItemTitle } from '@/pop-up/components/ui/atoms/item';
 
 function AppUaInfo({ buttonCallback }: { buttonCallback?: () => void }) {
   return (
