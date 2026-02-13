@@ -1,5 +1,3 @@
-import './App.css';
-
 import logo from '@/assets/logo.svg';
 
 import AppBar from './ui/molecules/app-bar';
