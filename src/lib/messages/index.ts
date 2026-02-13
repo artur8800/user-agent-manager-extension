@@ -1,9 +1,9 @@
 export type MESSAGE_TYPES = 'GET_USER_AGENTS' | 'ADD_USER_AGENT';
 
 export class AppMessageSender {
-  sendMessage<T>(message: MESSAGE_TYPES, payload?: T): Promise<unknown> {
+  sendMessage(message: MESSAGE_TYPES): Promise<unknown> {
     return new Promise((resolve) => {
-      chrome.runtime.sendMessage({ message, payload }, (response) => {
+      chrome.runtime.sendMessage({ message }, (response) => {
         if (chrome.runtime.lastError) {
           console.error('Error sending message:', chrome.runtime.lastError);
           resolve(null);

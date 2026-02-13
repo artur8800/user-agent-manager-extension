@@ -1,3 +1,6 @@
+import { useEffect } from 'react';
+
+import { AppMessageSender } from '@/lib/messages';
 import {
   Table,
   TableBody,
@@ -54,6 +57,13 @@ const invoices = [
 ];
 
 export function AppUaTable() {
+  useEffect(() => {
+    const AppMessageSenderInstance = new AppMessageSender();
+    AppMessageSenderInstance.sendMessage('GET_USER_AGENTS').then((response) => {
+      console.log('Received user agent list:', response);
+    });
+  }, []);
+
   return (
     <div className="p-4">
       <Table>

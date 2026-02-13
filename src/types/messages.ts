@@ -1,0 +1,1 @@
+export type MESSAGE_TYPES = 'GET_USER_AGENTS' | 'ADD_USER_AGENT';
