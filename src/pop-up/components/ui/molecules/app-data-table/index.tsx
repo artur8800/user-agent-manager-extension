@@ -1,7 +1,7 @@
-import { concatStrings } from '@/shared/utils';
 import SelectUserAgent from '@/pop-up/components/features/select-user-agent';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/pop-up/components/ui/atoms/table';
 import AppTooltip from '@/pop-up/components/ui/molecules/app-tooltip';
+import { concatStrings } from '@/shared/utils';
 import UserAgentItem from '@/types/ua';
 
 function AppDataTable({ data }: { data: UserAgentItem[] }) {

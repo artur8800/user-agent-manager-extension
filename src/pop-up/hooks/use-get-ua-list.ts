@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useUnit } from 'effector-react';
 
-import { AppMessageSender, MESSAGE_TYPES } from '@/shared/messages';
 import { $uaList, addDefaultData } from '@/pop-up/store';
+import { AppMessageSender, MESSAGE_TYPES } from '@/shared/messages';
 
 function useGetUserAgentsList() {
   const [isLoading, setIsLoading] = useState(true);
-  const onAddUserAgent = useUnit(addDefaultData);
   const uaList = useUnit($uaList);
+
+  const onAddUserAgent = useUnit(addDefaultData);
 
   useEffect(() => {
     const sender = new AppMessageSender();

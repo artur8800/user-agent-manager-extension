@@ -1,6 +1,5 @@
-import { AppMessageSender } from '@/shared/messages/index';
-
 import { STORAGE_KEY } from '@/shared/const';
+import { AppMessageSender } from '@/shared/messages/index';
 import UserAgentItem from '@/types/ua';
 
 import DNetRequestManager from './dnet-request';
@@ -21,7 +20,7 @@ import UserAgentCatalog from './ua';
 
   console.log('Current active UA:', activeUa);
 
-  const formattedList = uaCatalog.formatUaList();
+  const formattedList = uaCatalog.formatUaList().map((ua) => ({ ...ua, isActive: ua.ua === activeUa }));
 
   console.log('Formatted UA List:', formattedList);
 
