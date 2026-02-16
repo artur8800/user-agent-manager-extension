@@ -1,4 +1,4 @@
-import { AppMessageSender } from '@lib/messages/index';
+import { AppMessageSender, MessageMap } from '@lib/messages/index';
 
 import UserAgentItem from '@/types/ua';
 
@@ -37,11 +37,16 @@ import UserAgentCatalog from './ua';
 
   console.log('Dynamic rule added successfully.');
 
-  AppMessageSenderInstance.initMessageListener<UserAgentItem[] | undefined>(async (message, payload) => {
-    if (message === 'GET_USER_AGENTS') {
-      return (await storage.getItems<UserAgentItem[]>('userAgents')) || [];
-    } else if (message === 'ADD_USER_AGENT' && typeof payload === 'string') {
-      AppMessageSenderInstance.sendMessage('ADD_USER_AGENT');
+  AppMessageSenderInstance.initMessageListener(async (message, payload) => {
+    switch (message) {
+      case 'GET_USER_AGENTS': {
+        return (await storage.getItems<UserAgentItem[]>('userAgents')) ?? [];
+      }
+
+      case 'ADD_USER_AGENT': {
+        await storage.addItems('userAgents', payload?.userAgent ? [payload.userAgent] : null);
+        return true;
+      }
     }
   });
 })();

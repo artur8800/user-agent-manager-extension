@@ -1,27 +1,46 @@
-export type MESSAGE_TYPES = 'GET_USER_AGENTS' | 'ADD_USER_AGENT';
+import UserAgentItem from '@/types/ua';
+
+interface MessageMap {
+  GET_USER_AGENTS: {
+    request: null | undefined;
+    response: UserAgentItem[];
+  };
+  ADD_USER_AGENT: {
+    request: { userAgent: string };
+    response: boolean;
+  };
+}
+
+export type MessageType = keyof MessageMap;
 
 export class AppMessageSender {
-  sendMessage<T>(message: MESSAGE_TYPES): Promise<T | null> {
+  sendMessage<K extends MessageType>(
+    message: K,
+    payload: MessageMap[K]['request']
+  ): Promise<MessageMap[K]['response'] | null> {
     return new Promise((resolve) => {
-      chrome.runtime.sendMessage({ message }, (response) => {
-        console.log('Send message response:', response);
+      chrome.runtime.sendMessage({ message, payload }, (response: { payload: MessageMap[K]['response'] }) => {
         if (chrome.runtime.lastError) {
-          console.error('Error sending message:', chrome.runtime.lastError);
+          console.error(chrome.runtime.lastError);
           resolve(null);
-        } else {
-          resolve(response.payload as T);
+          return;
         }
+        resolve(response?.payload ?? null);
       });
     });
   }
 
-  initMessageListener<T>(callback: (message: MESSAGE_TYPES, payload?: unknown) => Promise<T>) {
-    chrome.runtime.onMessage.addListener((request, _, sendResponse) => {
-      console.log('Received message:', request, request.payload);
-      callback(request.message, request.payload).then((response) => {
-        console.log('CALLBACK response:', response);
-        sendResponse(response);
-      });
-    });
+  initMessageListener<K extends MessageType>(
+    callback: (message: K, payload: MessageMap[K]['request']) => Promise<MessageMap[K]['response']>
+  ) {
+    chrome.runtime.onMessage.addListener(
+      (request: { message: K; payload?: MessageMap[K]['request'] }, _, sendResponse) => {
+        callback(request.message, request.payload).then((response) => {
+          sendResponse({ payload: response });
+        });
+
+        return true;
+      }
+    );
   }
 }
