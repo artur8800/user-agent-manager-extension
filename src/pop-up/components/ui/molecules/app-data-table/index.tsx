@@ -25,7 +25,7 @@ function AppDataTable({ data }: { data: UserAgentItem[] }) {
                 <span>{index + 1}</span>
               </TableCell>
               <TableCell className="font-small">
-                <SelectUserAgent />
+                <SelectUserAgent id={item.id} isSelected={item.isActive} />
               </TableCell>
               <TableCell className="font-small">
                 <span>{concatStrings(item.browser?.name)}</span>
