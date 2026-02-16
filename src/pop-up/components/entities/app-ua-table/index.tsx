@@ -9,6 +9,7 @@ export function AppUaTable() {
 
   useEffect(() => {
     const AppMessageSenderInstance = new AppMessageSender();
+
     AppMessageSenderInstance.sendMessage('GET_USER_AGENTS')
       .then((response) => {
         console.log('Received user agent list:', JSON.stringify(response));
