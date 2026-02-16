@@ -1,5 +1,6 @@
 import { concatStrings } from '@/lib/utils';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/pop-up/components/ui/atoms/table';
+import AppTooltip from '@/pop-up/components/ui/molecules/app-tooltip';
 import UserAgentItem from '@/types/ua';
 
 function AppDataTable({ data }: { data: UserAgentItem[] }) {
@@ -17,7 +18,7 @@ function AppDataTable({ data }: { data: UserAgentItem[] }) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {[data[0]].map((item) => (
+          {data.map((item) => (
             <TableRow key={item.id}>
               <TableCell className="font-small">
                 <span>{concatStrings(item.browser?.name)}</span>
@@ -29,7 +30,10 @@ function AppDataTable({ data }: { data: UserAgentItem[] }) {
                 <span>{concatStrings(item.os?.version, item.os?.name)}</span>
               </TableCell>
               <TableCell className="text-left">
-                <span className="truncate text-ellipsis max-w-[330px] inline-block">{item.ua}</span>
+                <AppTooltip
+                  originalText={item.ua}
+                  truncateTextClass="max-w-[330px] truncate inline-block text-ellipsis cursor-pointer"
+                />
               </TableCell>
             </TableRow>
           ))}
