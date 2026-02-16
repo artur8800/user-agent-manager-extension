@@ -1,4 +1,4 @@
-import AppLogger from '@lib/logger';
+import AppLogger from '@/shared/logger';
 
 class AppStorage {
   instance: chrome.storage.StorageArea;

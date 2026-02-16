@@ -1,6 +1,6 @@
-import { AppMessageSender } from '@lib/messages/index';
+import { AppMessageSender } from '@/shared/messages/index';
 
-import { STORAGE_KEY } from '@/lib/const';
+import { STORAGE_KEY } from '@/shared/const';
 import UserAgentItem from '@/types/ua';
 
 import DNetRequestManager from './dnet-request';

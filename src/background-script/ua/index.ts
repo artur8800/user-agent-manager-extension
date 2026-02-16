@@ -1,7 +1,7 @@
 import { UAParser } from 'ua-parser-js';
 
-import desktopList from '@/lib/ua-lists/ua-desktop.json';
-import mobileList from '@/lib/ua-lists/ua-mobile.json';
+import desktopList from '@/shared/ua-lists/ua-desktop.json';
+import mobileList from '@/shared/ua-lists/ua-mobile.json';
 
 type UAList = {
   ua: string;

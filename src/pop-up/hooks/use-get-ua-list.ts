@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useUnit } from 'effector-react';
 
-import { AppMessageSender, MESSAGE_TYPES } from '@/lib/messages';
+import { AppMessageSender, MESSAGE_TYPES } from '@/shared/messages';
 import { $uaList, addDefaultData } from '@/pop-up/store';
 
 function useGetUserAgentsList() {

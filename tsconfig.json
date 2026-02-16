@@ -22,7 +22,7 @@
     "noFallthroughCasesInSwitch": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@lib/*": ["./src/lib/*"],
+      "@lib/*": ["src/shared/*"],
       "@components/*": ["./src/popop-up/components/*"],
       "@ui/*": ["./src/pop-up/components/ui/*"],
       "@features/*": ["./src/pop-up/components/features/*"],
