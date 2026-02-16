@@ -6,5 +6,6 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function concatStrings(...strings: (string | undefined)[]) {
-  return strings.filter(Boolean).join(' ');
+  const result = strings.filter(Boolean).join(' ');
+  return result.length > 1 ? result : '-';
 }
