@@ -1,7 +1,5 @@
 import AppLogger from '@lib/logger';
 
-const STORAGE_KEY = 'userAgents';
-
 class AppStorage {
   instance: chrome.storage.StorageArea;
 
@@ -52,15 +50,15 @@ class AppStorage {
     });
   }
 
-  init<T>({ defaultData, storageKey }: { defaultData: T; storageKey?: string }) {
+  init<T>({ defaultData, storageKey }: { defaultData: T; storageKey: string }) {
     return new Promise((resolve) => {
       this.instance.get(null, (data: { [key: string]: [T] }) => {
         if (chrome.runtime.lastError) {
           AppLogger.error('Error initializing storage:', chrome.runtime.lastError);
           resolve(false);
         } else {
-          const keyToCheck = storageKey || STORAGE_KEY;
-          if (Array.isArray(data[keyToCheck]) && data[keyToCheck].length <= 0) {
+          const keyToCheck = storageKey;
+          if (!data[keyToCheck]) {
             this.addItems(keyToCheck, defaultData);
             AppLogger.log(`Storage initialized with default data under key "${keyToCheck}".`);
           }

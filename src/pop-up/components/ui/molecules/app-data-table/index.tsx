@@ -7,6 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/pop-up/components/ui/atoms/table';
+import UserAgentItem from '@/types/ua';
 
 const invoices = [
   {
@@ -53,7 +54,9 @@ const invoices = [
   },
 ];
 
-function AppDataTable() {
+function AppDataTable({ data }: { data: UserAgentItem[] }) {
+  console.log('Rendering AppDataTable with data:', data);
+
   return (
     <div className="p-4">
       <Table>

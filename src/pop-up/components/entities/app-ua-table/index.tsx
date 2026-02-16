@@ -1,27 +1,13 @@
-import { useEffect, useState } from 'react';
 import AppDataTable from '@ui/molecules/app-data-table';
 import AppSpinner from '@ui/molecules/app-spinner';
 
-import { AppMessageSender } from '@/lib/messages';
+import useUserAgentsList from '@/pop-up/hooks/useUaList';
 
 export function AppUaTable() {
-  const [isLoading] = useState(true);
-
-  useEffect(() => {
-    const AppMessageSenderInstance = new AppMessageSender();
-
-    AppMessageSenderInstance.sendMessage('GET_USER_AGENTS')
-      .then((response) => {
-        console.log('Received user agent list:', JSON.stringify(response));
-      })
-      .catch((error) => {
-        console.error('Error fetching user agents:', error);
-      });
-  }, []);
-
+  const { userAgents, isLoading } = useUserAgentsList();
   if (isLoading) {
     return <AppSpinner />;
   }
 
-  return <AppDataTable />;
+  return <AppDataTable data={userAgents} />;
 }
