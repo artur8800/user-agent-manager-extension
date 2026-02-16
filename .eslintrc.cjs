@@ -21,6 +21,33 @@ module.exports = {
         argsIgnorePattern: '^_',
       },
     ],
+    'simple-import-sort/imports': [
+      'error',
+      {
+        groups: [
+          // 1. Node.js built-ins
+          ['^node:'],
+
+          // 2. External packages
+          ['^react', '^next', '^@?\\w'],
+
+          // 3. Absolute imports (aliases)
+          ['^@/'],
+
+          // 4. Side effect imports
+          ['^\\u0000'],
+
+          // 5. Parent imports
+          ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
+
+          // 6. Same-folder imports
+          ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'],
+
+          // 7. Style imports
+          ['^.+\\.s?css$'],
+        ],
+      },
+    ],
   },
   parserOptions: {
     sourceType: 'module',
