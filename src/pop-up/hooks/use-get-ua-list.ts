@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react';
 
-import { AppMessageSender } from '@/lib/messages';
+import { AppMessageSender, MESSAGE_TYPES } from '@/lib/messages';
 import UserAgentItem from '@/types/ua';
 
-function useUserAgentsList() {
+function useGetUserAgentsList() {
   const [isLoading, setIsLoading] = useState(true);
   const [userAgents, setUserAgents] = useState<UserAgentItem[]>([]);
 
   useEffect(() => {
     const sender = new AppMessageSender();
     let isMounted = true;
+    const key = MESSAGE_TYPES.GET_USER_AGENTS;
 
     sender
-      .sendMessage('GET_USER_AGENTS', undefined)
+      .sendMessage(key, undefined)
       .then((data) => {
         if (isMounted && data) {
           setUserAgents(data);
@@ -35,4 +36,4 @@ function useUserAgentsList() {
   return { userAgents, isLoading };
 }
 
-export default useUserAgentsList;
+export default useGetUserAgentsList;

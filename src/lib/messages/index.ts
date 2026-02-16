@@ -1,11 +1,16 @@
 import UserAgentItem from '@/types/ua';
 
-interface MessageMap {
-  GET_USER_AGENTS: {
+export const MESSAGE_TYPES = {
+  GET_USER_AGENTS: 'GET_USER_AGENTS',
+  ADD_USER_AGENT: 'ADD_USER_AGENT',
+} as const;
+
+export interface MessageMap {
+  [MESSAGE_TYPES.GET_USER_AGENTS]: {
     request: null | undefined;
     response: UserAgentItem[];
   };
-  ADD_USER_AGENT: {
+  [MESSAGE_TYPES.ADD_USER_AGENT]: {
     request: { userAgent: string };
     response: boolean;
   };

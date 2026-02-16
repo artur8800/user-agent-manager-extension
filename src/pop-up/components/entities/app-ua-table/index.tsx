@@ -1,10 +1,10 @@
 import AppDataTable from '@ui/molecules/app-data-table';
 import AppSpinner from '@ui/molecules/app-spinner';
 
-import useUserAgentsList from '@/pop-up/hooks/useUaList';
+import useGetUserAgentsList from '@/pop-up/hooks/use-get-ua-list';
 
 export function AppUaTable() {
-  const { userAgents, isLoading } = useUserAgentsList();
+  const { userAgents, isLoading } = useGetUserAgentsList();
   if (isLoading) {
     return <AppSpinner />;
   }
