@@ -1,4 +1,4 @@
-import { AppMessageSender, MessageMap } from '@lib/messages/index';
+import { AppMessageSender } from '@lib/messages/index';
 
 import UserAgentItem from '@/types/ua';
 
