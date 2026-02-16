@@ -7,4 +7,5 @@ export default interface UserAgentItem {
   device: IDevice;
   pct: number;
   id: string;
+  isActive: boolean;
 }

@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
+import { useUnit } from 'effector-react';
 
 import { AppMessageSender, MESSAGE_TYPES } from '@/lib/messages';
-import UserAgentItem from '@/types/ua';
+import { $uaList, addDefaultData } from '@/pop-up/store';
 
 function useGetUserAgentsList() {
   const [isLoading, setIsLoading] = useState(true);
-  const [userAgents, setUserAgents] = useState<UserAgentItem[]>([]);
+  const onAddUserAgent = useUnit(addDefaultData);
+  const uaList = useUnit($uaList);
 
   useEffect(() => {
     const sender = new AppMessageSender();
@@ -16,7 +18,8 @@ function useGetUserAgentsList() {
       .sendMessage(key, undefined)
       .then((data) => {
         if (isMounted && data) {
-          setUserAgents(data);
+          console.log('Received user agents:', data);
+          onAddUserAgent(data);
         }
       })
       .catch((error) => {
@@ -31,9 +34,14 @@ function useGetUserAgentsList() {
     return () => {
       isMounted = false;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return { userAgents, isLoading };
+  useEffect(() => {
+    console.log('DEBUG', uaList);
+  }, [uaList]);
+
+  return { isLoading, uaList };
 }
 
 export default useGetUserAgentsList;
