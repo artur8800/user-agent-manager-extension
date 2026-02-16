@@ -5,7 +5,7 @@ import ViewToggle from './widgets/view-toggle';
 
 function App() {
   return (
-    <div className="bg-secondary w-screen-600 min-h-screen-min max-h-screen-max relative">
+    <div className="bg-secondary w-screen-700 min-h-screen-min max-h-screen-max relative">
       <AppBar logo={logo} />
       <ViewToggle />
     </div>

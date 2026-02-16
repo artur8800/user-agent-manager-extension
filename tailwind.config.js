@@ -8,6 +8,7 @@ export default {
     extend: {
       width: {
         'screen-600': '600px',
+        'screen-700': '700px',
       },
       minHeight: {
         'screen-min': '600px',

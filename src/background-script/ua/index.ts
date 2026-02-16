@@ -41,10 +41,11 @@ class UserAgentCatalog {
   }
 
   formatUaList() {
-    return [...this.mobileList, ...this.desktopList].map((item) => {
+    return [...this.mobileList, ...this.desktopList].map((item, index) => {
       const uaParser = new UAParser();
 
       return {
+        id: `ua-${index}`,
         ua: item.ua,
         pct: item.pct,
         browser: uaParser.setUA(item.ua).getBrowser(),
