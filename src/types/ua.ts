@@ -6,4 +6,6 @@ export default interface UserAgentItem {
   os: IOS;
   device: IDevice;
   pct: number;
+  id: string;
+  isActive: boolean;
 }

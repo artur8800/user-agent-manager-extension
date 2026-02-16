@@ -1,5 +1,6 @@
-import { AppMessageSender } from '@lib/messages/index';
+import { AppMessageSender } from '@/shared/messages/index';
 
+import { STORAGE_KEY } from '@/shared/const';
 import UserAgentItem from '@/types/ua';
 
 import DNetRequestManager from './dnet-request';
@@ -13,10 +14,10 @@ import UserAgentCatalog from './ua';
   const storage = new AppStorage();
   const AppMessageSenderInstance = new AppMessageSender();
 
-  const oldRules = await dnrManger.getRules();
-  const oldRuleIds = oldRules.map((rule) => rule.id);
+  const previousRules = await dnrManger.getRules();
+  const previousRulesId = previousRules.map((rule) => rule.id);
 
-  const activeUa = uaCatalog.getActiveUa(oldRules[0]);
+  const activeUa = uaCatalog.getActiveUa(previousRules[0]);
 
   console.log('Current active UA:', activeUa);
 
@@ -25,7 +26,7 @@ import UserAgentCatalog from './ua';
   console.log('Formatted UA List:', formattedList);
 
   await chrome.declarativeNetRequest.updateDynamicRules({
-    removeRuleIds: oldRuleIds,
+    removeRuleIds: previousRulesId,
     addRules: [
       formatRule(
         'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.4.2.0 Mobile Safari/537.36'
@@ -33,15 +34,22 @@ import UserAgentCatalog from './ua';
     ],
   });
 
-  await storage.init<unknown[]>({ defaultData: formattedList });
+  await storage.init<UserAgentItem[]>({ defaultData: formattedList, storageKey: STORAGE_KEY });
 
   console.log('Dynamic rule added successfully.');
 
-  AppMessageSenderInstance.initMessageListener<UserAgentItem[] | undefined>(async (message, payload) => {
-    if (message === 'GET_USER_AGENTS') {
-      return (await storage.getItems<UserAgentItem[]>('userAgents')) || [];
-    } else if (message === 'ADD_USER_AGENT' && typeof payload === 'string') {
-      AppMessageSenderInstance.sendMessage('ADD_USER_AGENT');
+  AppMessageSenderInstance.initMessageListener(async (message, payload) => {
+    switch (message) {
+      case 'GET_USER_AGENTS': {
+        const result = await storage.getItems<UserAgentItem[]>(STORAGE_KEY);
+        console.log('User agents retrieved from storage:', result);
+        return result ?? [];
+      }
+
+      case 'ADD_USER_AGENT': {
+        await storage.addItems(STORAGE_KEY, payload?.userAgent ? [payload.userAgent] : null);
+        return true;
+      }
     }
   });
 })();

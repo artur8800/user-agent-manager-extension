@@ -1,7 +1,7 @@
 import { UAParser } from 'ua-parser-js';
 
-import desktopList from '@/lib/ua-lists/ua-desktop.json';
-import mobileList from '@/lib/ua-lists/ua-mobile.json';
+import desktopList from '@/shared/ua-lists/ua-desktop.json';
+import mobileList from '@/shared/ua-lists/ua-mobile.json';
 
 type UAList = {
   ua: string;
@@ -41,10 +41,11 @@ class UserAgentCatalog {
   }
 
   formatUaList() {
-    return [...this.mobileList, ...this.desktopList].map((item) => {
+    return [...this.mobileList, ...this.desktopList].map((item, index) => {
       const uaParser = new UAParser();
 
       return {
+        id: `ua-${index}`,
         ua: item.ua,
         pct: item.pct,
         browser: uaParser.setUA(item.ua).getBrowser(),

@@ -3,7 +3,7 @@ import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react';
 import type { Variants } from 'motion/react';
 import { motion, useAnimation } from 'motion/react';
 
-import { cn } from '@/lib/utils';
+import { cn } from '@/shared/utils';
 
 export interface BadgeAlertIconHandle {
   startAnimation: () => void;
