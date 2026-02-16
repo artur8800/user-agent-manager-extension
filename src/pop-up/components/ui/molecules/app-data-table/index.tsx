@@ -11,9 +11,9 @@ function AppDataTable({ data }: { data: UserAgentItem[] }) {
       <Table className="text-xs table-fixed">
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[120px]">Browser</TableHead>
-            <TableHead className="w-[80px]">Device</TableHead>
-            <TableHead className="w-[100px]">OS</TableHead>
+            <TableHead className="w-[120px] font-bold">Browser</TableHead>
+            <TableHead className="w-[80px] font-bold">Device</TableHead>
+            <TableHead className="w-[100px] font-bold">OS</TableHead>
             <TableHead className="w-[360px]">User-Agent</TableHead>
           </TableRow>
         </TableHeader>
