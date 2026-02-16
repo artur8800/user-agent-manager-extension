@@ -60,7 +60,7 @@ class AppStorage {
           resolve(false);
         } else {
           const keyToCheck = storageKey || STORAGE_KEY;
-          if (data[keyToCheck].length <= 0) {
+          if (Array.isArray(data[keyToCheck]) && data[keyToCheck].length <= 0) {
             this.addItems(keyToCheck, defaultData);
             AppLogger.log(`Storage initialized with default data under key "${keyToCheck}".`);
           }

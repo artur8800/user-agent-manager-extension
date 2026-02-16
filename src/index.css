@@ -30,6 +30,7 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
     --warning: 50 100% 50%;
+    --spinner: 169 93% 59%;
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -57,6 +58,7 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
     --warning: 50 100% 50%;
+    --spinner: 169 93% 59%;
   }
 }
 

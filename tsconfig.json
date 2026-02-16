@@ -24,6 +24,7 @@
       "@/*": ["./src/*"],
       "@lib/*": ["./src/lib/*"],
       "@components/*": ["./src/popop-up/components/*"],
+      "@ui/*": ["./src/pop-up/components/ui/*"],
       "@features/*": ["./src/pop-up/components/features/*"],
       "@widgets/*": ["./src/pop-up/components/widgets/*"],
       "@entities/*": ["./src/pop-up/components/entities/*"],

@@ -21,6 +21,7 @@ export default {
         sm: 'calc(var(--radius) - 4px)',
       },
       colors: {
+        spinner: 'hsl(var(--spinner))',
         warning: 'hsl(var(--warning))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',

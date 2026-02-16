@@ -1,9 +1,11 @@
 import { AppMessageSender } from '@lib/messages/index';
-import UserAgentCatalog from './ua';
+
+import UserAgentItem from '@/types/ua';
+
 import DNetRequestManager from './dnet-request';
 import { formatRule } from './rules';
 import AppStorage from './storage';
-import UserAgentItem from '@/types/ua';
+import UserAgentCatalog from './ua';
 
 (async () => {
   const dnrManger = new DNetRequestManager();
@@ -35,12 +37,11 @@ import UserAgentItem from '@/types/ua';
 
   console.log('Dynamic rule added successfully.');
 
-  AppMessageSenderInstance.initMessageListener<UserAgentItem>(async (message, payload) => {
+  AppMessageSenderInstance.initMessageListener<UserAgentItem[] | undefined>(async (message, payload) => {
     if (message === 'GET_USER_AGENTS') {
-      const userAgents = await storage.getItems<UserAgentItem[]>('userAgents');
-      AppMessageSenderInstance.sendMessage('GET_USER_AGENTS', userAgents);
+      return (await storage.getItems<UserAgentItem[]>('userAgents')) || [];
     } else if (message === 'ADD_USER_AGENT' && typeof payload === 'string') {
-      AppMessageSenderInstance.sendMessage('ADD_USER_AGENT', { success: true });
+      AppMessageSenderInstance.sendMessage('ADD_USER_AGENT');
     }
   });
 })();

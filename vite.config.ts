@@ -20,6 +20,7 @@ export default defineConfig({
       '@features': path.resolve(__dirname, './src/pop-up/components/features'),
       '@widgets': path.resolve(__dirname, './src/pop-up/components/widgets'),
       '@entities': path.resolve(__dirname, './src/pop-up/components/entities'),
+      '@ui': path.resolve(__dirname, './src/pop-up/components/ui'),
       '@pop-up': path.resolve(__dirname, './src/pop-up'),
       '@background-script': path.resolve(__dirname, './src/background-script'),
       '@types': path.resolve(__dirname, './src/types'),
