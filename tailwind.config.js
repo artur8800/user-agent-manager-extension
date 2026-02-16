@@ -13,9 +13,7 @@ export default {
       minHeight: {
         'screen-min': '600px',
       },
-      maxHeight: {
-        'screen-max': '1024px',
-      },
+
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
