@@ -9,5 +9,13 @@ export function AppUaTable() {
     return <AppSpinner />;
   }
 
-  return <AppDataTable data={uaList} />;
+  return (
+    <div className="w-full h-full">
+      <div className="p-4 text-center">
+        <h2 className="text-lg font-bold">Select User-Agent from list</h2>
+      </div>
+
+      <AppDataTable data={uaList} />
+    </div>
+  );
 }
