@@ -2,6 +2,7 @@ import { UAParser } from 'ua-parser-js';
 
 import desktopList from '@/shared/ua-lists/ua-desktop.json';
 import mobileList from '@/shared/ua-lists/ua-mobile.json';
+import UserAgentItem from '@/types/ua';
 
 type UAList = {
   ua: string;
@@ -40,7 +41,20 @@ class UserAgentCatalog {
     return null;
   }
 
-  formatUaList() {
+  formatUaItem(value: string, totalCount: number): UserAgentItem {
+    const uaParser = new UAParser();
+    return {
+      id: `ua-${totalCount}`,
+      ua: value.trim(),
+      pct: 0,
+      browser: uaParser.setUA(value).getBrowser(),
+      os: uaParser.getOS(),
+      device: uaParser.getDevice(),
+      isActive: false,
+    };
+  }
+
+  formatUaList(): UserAgentItem[] {
     return [...this.mobileList, ...this.desktopList].map((item, index) => {
       const uaParser = new UAParser();
 
@@ -51,6 +65,7 @@ class UserAgentCatalog {
         browser: uaParser.setUA(item.ua).getBrowser(),
         os: uaParser.getOS(),
         device: uaParser.getDevice(),
+        isActive: false,
       };
     });
   }

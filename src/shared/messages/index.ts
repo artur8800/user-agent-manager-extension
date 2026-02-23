@@ -30,7 +30,7 @@ export class AppMessageSender {
           resolve(null);
           return;
         }
-        resolve(response?.payload ?? null);
+        resolve(response?.payload || null);
       });
     });
   }

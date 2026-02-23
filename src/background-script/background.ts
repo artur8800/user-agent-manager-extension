@@ -1,5 +1,5 @@
 import { STORAGE_KEY } from '@/shared/const';
-import { AppMessageSender } from '@/shared/messages/index';
+import { AppMessageSender } from '@/shared/messages';
 import UserAgentItem from '@/types/ua';
 
 import DNetRequestManager from './dnet-request';
@@ -33,7 +33,7 @@ import UserAgentCatalog from './ua';
     ],
   });
 
-  await storage.init<UserAgentItem[]>({ defaultData: formattedList, storageKey: STORAGE_KEY });
+  await storage.init<UserAgentItem>({ defaultData: formattedList, storageKey: STORAGE_KEY });
 
   console.log('Dynamic rule added successfully.');
 
@@ -46,7 +46,12 @@ import UserAgentCatalog from './ua';
       }
 
       case 'ADD_USER_AGENT': {
-        await storage.addItems(STORAGE_KEY, payload?.userAgent ? [payload.userAgent] : null);
+        const storageItems = await storage.getItems<UserAgentItem[]>(STORAGE_KEY);
+        if (storageItems && payload?.userAgent) {
+          const formatedUaItem = uaCatalog.formatUaItem(payload.userAgent, storageItems.length);
+          await storage.addItems<UserAgentItem>(STORAGE_KEY, [...storageItems, formatedUaItem]);
+        }
+
         return true;
       }
     }
