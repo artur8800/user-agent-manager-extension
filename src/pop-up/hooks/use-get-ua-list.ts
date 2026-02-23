@@ -16,8 +16,9 @@ function useGetUserAgentsList() {
     const key = MESSAGE_TYPES.GET_USER_AGENTS;
 
     sender
-      .sendMessage(key, undefined)
+      .sendMessage(key, null)
       .then((data) => {
+        console.log('debug sender data', data);
         if (isMounted && data) {
           console.log('Received user agents:', data);
           onAddUserAgent(data);
@@ -25,6 +26,7 @@ function useGetUserAgentsList() {
       })
       .catch((error) => {
         console.error('Error fetching user agents:', error);
+        onAddUserAgent([]);
       })
       .finally(() => {
         if (isMounted) {
@@ -37,10 +39,6 @@ function useGetUserAgentsList() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  useEffect(() => {
-    console.log('DEBUG', uaList);
-  }, [uaList]);
 
   return { isLoading, uaList };
 }
