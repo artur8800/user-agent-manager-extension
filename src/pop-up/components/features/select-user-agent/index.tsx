@@ -11,7 +11,14 @@ function SelectUserAgent({ id, isSelected }: { id: string; isSelected: boolean }
     console.log('Current active user agent:', currentActive);
   }, [currentActive]);
 
-  return <Checkbox id={id} checked={isSelected} onCheckedChange={() => onSelectUa(id)} />;
+  return (
+    <Checkbox
+      className="data-[state=checked]:bg-active  data-[state=checked]:border-active"
+      id={id}
+      checked={isSelected}
+      onCheckedChange={() => onSelectUa(id)}
+    />
+  );
 }
 
 export default SelectUserAgent;
