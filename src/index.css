@@ -32,6 +32,8 @@
     --warning: 50 100% 50%;
     --spinner: 169 93% 59%;
     --active: 172 100% 37%;
+    --success: 172 100% 37%;
+    --success-foreground: 0 0% 100%;
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -61,6 +63,8 @@
     --warning: 50 100% 50%;
     --spinner: 169 93% 59%;
     --active: 172 100% 37%;
+    --success: 172 100% 37%;
+    --success-foreground: 0 0% 100%;
   }
 }
 
@@ -71,6 +75,12 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.group.toaster .group-\[\.toaster\]\:bg-background[data-type='success'] {
+  background-color: hsl(var(--success));
+  color: hsl(var(--success-foreground));
+  border-color: hsl(var(--success));
 }
 
 @layer utilities {

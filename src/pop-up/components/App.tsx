@@ -1,4 +1,5 @@
 import logo from '@/assets/logo.svg';
+import { Toaster } from '@/pop-up/components/ui/atoms/sonner';
 
 import { TooltipProvider } from './ui/atoms/tooltip';
 import AppBar from './ui/molecules/app-bar';
@@ -11,6 +12,7 @@ function App() {
         <AppBar logo={logo} />
         <ViewToggle />
       </div>
+      <Toaster duration={2000} />
     </TooltipProvider>
   );
 }

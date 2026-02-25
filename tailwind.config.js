@@ -20,6 +20,10 @@ export default {
         sm: 'calc(var(--radius) - 4px)',
       },
       colors: {
+        success: {
+          DEFAULT: 'hsl(var(--success))',
+          foreground: 'hsl(var(--success))',
+        },
         active: 'hsl(var(--active))',
         spinner: 'hsl(var(--spinner))',
         warning: 'hsl(var(--warning))',

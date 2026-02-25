@@ -1,10 +1,13 @@
 import { Field } from '@ui/atoms/field';
 import { InputGroup, InputGroupButton, InputGroupInput } from '@ui/atoms/input-group';
 import { useUnit } from 'effector-react';
+import { toast } from 'sonner';
 
 import useAddUserAgent from '@/pop-up/hooks/use-add-ua';
 import { addDefaultData } from '@/pop-up/store';
 import { AppMessageSender } from '@/shared/messages';
+
+const TOAST_SUCCESS_TEXT = 'Data has been added successfully!';
 
 function AddUserAgent() {
   const onUpdateUaList = useUnit(addDefaultData);
@@ -34,6 +37,10 @@ function AddUserAgent() {
               .then((response) => {
                 if (response) {
                   onUpdateUaList(response);
+
+                  toast.success(TOAST_SUCCESS_TEXT, {
+                    position: 'top-center',
+                  });
                 }
               });
           }}
