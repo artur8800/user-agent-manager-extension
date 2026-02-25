@@ -11,7 +11,7 @@ export function AppUaTable({
   renderTopBlock?: () => React.ReactNode;
   renderBottomBlock?: () => React.ReactNode;
 }) {
-  const { uaList, isLoading } = useGetUserAgentsList();
+  const { isLoading } = useGetUserAgentsList();
 
   if (isLoading) {
     return <AppSpinner />;
@@ -21,7 +21,7 @@ export function AppUaTable({
     <div className="w-full h-full">
       {typeof renderTopBlock === 'function' && renderTopBlock()}
 
-      <AppDataTable data={uaList} />
+      <AppDataTable />
 
       {typeof renderBottomBlock === 'function' && renderBottomBlock()}
       <AddUserAgent />
