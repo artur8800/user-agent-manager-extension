@@ -1,4 +1,5 @@
 import { createEffect, createEvent, createStore, sample } from 'effector';
+import { toast } from 'sonner';
 
 import { AppMessageSender, MESSAGE_TYPES } from '@/shared/messages';
 import UserAgentItem from '@/types/ua';
@@ -6,9 +7,24 @@ import UserAgentItem from '@/types/ua';
 const sender = new AppMessageSender();
 
 export const getUserAgentsFx = createEffect(async () => {
-  const result = await sender.sendMessage(MESSAGE_TYPES.GET_USER_AGENTS, null);
+  try {
+    const result = await sender.sendMessage(MESSAGE_TYPES.GET_USER_AGENTS, null);
 
-  return result ?? [];
+    return result ?? [];
+  } catch (error) {
+    console.error('GET_USER_AGENTS failed:', error);
+    throw error;
+  }
+});
+
+export const addUserAgentFx = createEffect(async (userAgent: string): Promise<UserAgentItem[]> => {
+  const result = await sender.sendMessage(MESSAGE_TYPES.ADD_USER_AGENT, { userAgent });
+
+  if (!result) {
+    throw new Error('Failed to add user agent');
+  }
+
+  return result;
 });
 
 export const addUserAgent = createEvent<UserAgentItem>();
@@ -37,9 +53,32 @@ export const $randomUserAgent = $uaList.map((list) => {
   return list[Math.floor(Math.random() * list.length)];
 });
 
-export const $uaListError = createStore<string | null>(null).on(getUserAgentsFx.failData, (_, err) => err.message);
+export const $uaListError = createStore<string | null>(null)
+  .on(getUserAgentsFx.failData, (_, error) => {
+    if (error instanceof Error) return error.message;
+    return 'Unknown error';
+  })
+  .reset(getUserAgentsFx);
 
 sample({
   clock: getUserAgentsFx.doneData,
   target: addDefaultData,
+});
+
+sample({
+  clock: addUserAgentFx.doneData,
+  target: addDefaultData,
+});
+
+const TOAST_SUCCESS_TEXT = 'Data has been added successfully!';
+const TOAST_ERROR_TEXT = 'Failed to add data';
+
+addUserAgentFx.done.watch(() => {
+  toast.success(TOAST_SUCCESS_TEXT, {
+    position: 'top-center',
+  });
+});
+
+addUserAgentFx.failData.watch((error) => {
+  toast.error(error.message ?? TOAST_ERROR_TEXT);
 });

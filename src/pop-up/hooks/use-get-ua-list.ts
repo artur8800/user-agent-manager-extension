@@ -10,8 +10,6 @@ function useGetUserAgentsList() {
     getUserAgentsFx();
   }, []);
 
-  console.log({ isLoading });
-
   return { uaList, isLoading };
 }
 
