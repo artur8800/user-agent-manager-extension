@@ -15,7 +15,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-      '@lib': path.resolve(__dirname, './src/lib'),
+      '@shared': path.resolve(__dirname, './src/shared'),
       '@components': path.resolve(__dirname, './src/pop-up/components'),
       '@features': path.resolve(__dirname, './src/pop-up/components/features'),
       '@widgets': path.resolve(__dirname, './src/pop-up/components/widgets'),

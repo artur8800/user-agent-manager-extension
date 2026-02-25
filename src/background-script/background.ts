@@ -1,6 +1,5 @@
-import { AppMessageSender } from '@/shared/messages/index';
-
 import { STORAGE_KEY } from '@/shared/const';
+import { AppMessageSender } from '@/shared/messages';
 import UserAgentItem from '@/types/ua';
 
 import DNetRequestManager from './dnet-request';
@@ -21,7 +20,7 @@ import UserAgentCatalog from './ua';
 
   console.log('Current active UA:', activeUa);
 
-  const formattedList = uaCatalog.formatUaList();
+  const formattedList = uaCatalog.formatUaList().map((ua) => ({ ...ua, isActive: ua.ua === activeUa }));
 
   console.log('Formatted UA List:', formattedList);
 
@@ -34,7 +33,7 @@ import UserAgentCatalog from './ua';
     ],
   });
 
-  await storage.init<UserAgentItem[]>({ defaultData: formattedList, storageKey: STORAGE_KEY });
+  await storage.init<UserAgentItem>({ defaultData: formattedList, storageKey: STORAGE_KEY });
 
   console.log('Dynamic rule added successfully.');
 
@@ -43,13 +42,21 @@ import UserAgentCatalog from './ua';
       case 'GET_USER_AGENTS': {
         const result = await storage.getItems<UserAgentItem[]>(STORAGE_KEY);
         console.log('User agents retrieved from storage:', result);
-        return result ?? [];
+        return result || [];
       }
 
       case 'ADD_USER_AGENT': {
-        await storage.addItems(STORAGE_KEY, payload?.userAgent ? [payload.userAgent] : null);
-        return true;
+        const storageItems = await storage.getItems<UserAgentItem[]>(STORAGE_KEY);
+        if (payload?.userAgent && storageItems && storageItems.length > 0) {
+          const formatedUaItem = uaCatalog.formatUaItem(payload.userAgent, storageItems.length);
+          await storage.addItems<UserAgentItem>(STORAGE_KEY, [...storageItems, formatedUaItem]);
+          return (await storage.getItems<UserAgentItem[]>(STORAGE_KEY)) || [];
+        } else {
+          return [];
+        }
       }
+      default:
+        throw new Error(`Unhandled message: ${message}`);
     }
   });
 })();

@@ -5,7 +5,11 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function concatStrings(...strings: (string | undefined)[]) {
-  const result = strings.filter(Boolean).join(' ');
+export function concatStrings(separator: string, ...strings: (string | undefined)[]) {
+  const result = strings.filter(Boolean).join(separator);
   return result.length > 1 ? result : '-';
+}
+
+export function wait(ms: number) {
+  return new Promise((resolve) => setTimeout(() => resolve(true), ms));
 }

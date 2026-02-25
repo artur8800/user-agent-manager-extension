@@ -12,7 +12,7 @@ export interface MessageMap {
   };
   [MESSAGE_TYPES.ADD_USER_AGENT]: {
     request: { userAgent: string };
-    response: boolean;
+    response: UserAgentItem[];
   };
 }
 
@@ -30,7 +30,7 @@ export class AppMessageSender {
           resolve(null);
           return;
         }
-        resolve(response?.payload ?? null);
+        resolve(response?.payload || null);
       });
     });
   }
@@ -43,7 +43,6 @@ export class AppMessageSender {
         callback(request.message, request.payload).then((response) => {
           sendResponse({ payload: response });
         });
-
         return true;
       }
     );

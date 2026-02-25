@@ -21,7 +21,7 @@ class AppStorage {
     });
   }
 
-  addItems(key: string, value: unknown) {
+  addItems<T>(key: string, value: T[]) {
     return new Promise((resolve) => {
       this.instance.set({ [key]: value }, () => {
         if (chrome.runtime.lastError) {
@@ -50,16 +50,16 @@ class AppStorage {
     });
   }
 
-  init<T>({ defaultData, storageKey }: { defaultData: T; storageKey: string }) {
+  init<T>({ defaultData, storageKey }: { defaultData: T[]; storageKey: string }) {
     return new Promise((resolve) => {
-      this.instance.get(null, (data: { [key: string]: [T] }) => {
+      this.instance.get(null, (data: { [key: string]: T }) => {
         if (chrome.runtime.lastError) {
           AppLogger.error('Error initializing storage:', chrome.runtime.lastError);
           resolve(false);
         } else {
           const keyToCheck = storageKey;
           if (!data[keyToCheck]) {
-            this.addItems(keyToCheck, defaultData);
+            this.addItems<T>(keyToCheck, defaultData);
             AppLogger.log(`Storage initialized with default data under key "${keyToCheck}".`);
           }
           resolve(true);

@@ -6,6 +6,6 @@
   "background": {
     "service_worker": "src/background-script/background.ts"
   },
-  "permissions": ["declarativeNetRequest", "declarativeNetRequestFeedback", "storage"],
+  "permissions": ["declarativeNetRequest", "declarativeNetRequestFeedback", "storage", "alarms"],
   "host_permissions": ["<all_urls>"]
 }
