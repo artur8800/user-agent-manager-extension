@@ -1,46 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useUnit } from 'effector-react';
 
-import { $uaList, addDefaultData } from '@/pop-up/store';
-import { AppMessageSender, MESSAGE_TYPES } from '@/shared/messages';
+import { $uaList, $uaListLoading, getUserAgentsFx } from '@/pop-up/store';
 
 function useGetUserAgentsList() {
-  const [isLoading, setIsLoading] = useState(true);
-  const uaList = useUnit($uaList);
-
-  const onAddUserAgent = useUnit(addDefaultData);
+  const [uaList, isLoading] = useUnit([$uaList, $uaListLoading]);
 
   useEffect(() => {
-    const sender = new AppMessageSender();
-    let isMounted = true;
-    const key = MESSAGE_TYPES.GET_USER_AGENTS;
-
-    sender
-      .sendMessage(key, null)
-      .then((data) => {
-        console.log('debug sender data', data);
-        if (isMounted && data) {
-          console.log('Received user agents:', data);
-          onAddUserAgent(data);
-        }
-      })
-      .catch((error) => {
-        console.error('Error fetching user agents:', error);
-        onAddUserAgent([]);
-      })
-      .finally(() => {
-        if (isMounted) {
-          setIsLoading(false);
-        }
-      });
-
-    return () => {
-      isMounted = false;
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    getUserAgentsFx();
   }, []);
 
-  return { isLoading, uaList };
+  console.log({ isLoading });
+
+  return { uaList, isLoading };
 }
 
 export default useGetUserAgentsList;

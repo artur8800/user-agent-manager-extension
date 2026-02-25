@@ -7,8 +7,8 @@ import { $uaList } from '@/pop-up/store';
 import { concatStrings } from '@/shared/utils';
 
 function AppDataTable() {
-  const dataList = useList($uaList, (item, index) => (
-    <li>
+  const dataList = useList($uaList, {
+    fn: (item, index) => (
       <TableRow key={item.id}>
         <TableCell className="font-small w-[40px]">
           <span>{index + 1}</span>
@@ -26,8 +26,8 @@ function AppDataTable() {
           />
         </TableCell>
       </TableRow>
-    </li>
-  ));
+    ),
+  });
 
   return (
     <div className="p-4  overflow-x-hidden [&>div]:overflow-x-hidden [&>div]:border [&>div]:border-solid [&>div]:border-primary/20 [&>div]:rounded-sm">
