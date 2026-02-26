@@ -66,6 +66,11 @@
     --success: 172 100% 37%;
     --success-foreground: 0 0% 100%;
   }
+
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
 }
 
 @layer base {

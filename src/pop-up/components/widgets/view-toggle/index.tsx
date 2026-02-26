@@ -1,16 +1,15 @@
-import { useState } from 'react';
 import AppUaInfo from '@entities/app-ua-info';
 import { AppUaTable } from '@entities/app-ua-table';
 import AppTableHeading from '@ui/molecules/app-table-heading';
+import { useUnit } from 'effector-react';
+
+import { $appView, toggleView } from './model';
 
 function ViewToggle() {
-  const [viewState, setViewState] = useState<'info' | 'table'>('info');
-  const handleChangeView = (state: 'info' | 'table') => {
-    setViewState(state);
-  };
+  const [viewState, onToggleView] = useUnit([$appView, toggleView]);
 
-  return viewState === 'info' ? (
-    <AppUaInfo buttonCallback={() => handleChangeView('table')} />
+  return viewState === 'main' ? (
+    <AppUaInfo buttonCallback={onToggleView} />
   ) : (
     <AppUaTable
       renderTopBlock={() => <AppTableHeading headingText="Select User-Agent from table" />}
