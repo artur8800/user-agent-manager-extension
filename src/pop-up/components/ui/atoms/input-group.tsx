@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { cn } from '@shared/utils';
 import { cva, type VariantProps } from 'class-variance-authority';
+
+import { cn } from '@shared/utils';
 
 import { Button } from '@/pop-up/components/ui/atoms/button';
 import { Input } from '@/pop-up/components/ui/atoms/input';

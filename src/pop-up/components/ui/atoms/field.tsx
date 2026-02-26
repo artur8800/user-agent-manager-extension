@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
-import { cn } from '@shared/utils';
 import { cva, type VariantProps } from 'class-variance-authority';
+
+import { cn } from '@shared/utils';
 
 import { Label } from '@/pop-up/components/ui/atoms/label';
 import { Separator } from '@/pop-up/components/ui/atoms/separator';

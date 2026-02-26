@@ -1,6 +1,7 @@
+import { useUnit } from 'effector-react';
+
 import { Field } from '@ui/atoms/field';
 import { InputGroup, InputGroupButton, InputGroupInput } from '@ui/atoms/input-group';
-import { useUnit } from 'effector-react';
 
 import useAddUserAgent from '@/pop-up/hooks/use-add-ua';
 import { addUserAgentFx } from '@/pop-up/store';

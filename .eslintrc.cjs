@@ -28,11 +28,22 @@ module.exports = {
           // 1. Node.js built-ins
           ['^node:'],
 
-          // 2. External packages
+          // 2. External packages (npm)
           ['^react', '^next', '^@?\\w'],
 
-          // 3. Absolute imports (aliases)
-          ['^@/'],
+          // 3. Internal aliases
+          [
+            '^@shared',
+            '^@components',
+            '^@features',
+            '^@widgets',
+            '^@entities',
+            '^@ui',
+            '^@pop-up',
+            '^@background-script',
+            '^@types',
+            '^@$', // чтобы поймать просто @ если где-то есть
+          ],
 
           // 4. Side effect imports
           ['^\\u0000'],

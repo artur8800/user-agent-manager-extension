@@ -1,11 +1,11 @@
-import { STORAGE_KEY } from '@/shared/const';
-import { AppMessageSender } from '@/shared/messages';
-import UserAgentItem from '@/types/ua';
-
 import DNetRequestManager from './dnet-request';
 import { formatRule } from './rules';
 import AppStorage from './storage';
 import UserAgentCatalog from './ua';
+
+import { STORAGE_KEY } from '@/shared/const';
+import { AppMessageSender } from '@/shared/messages';
+import UserAgentItem from '@/types/ua';
 
 (async () => {
   const dnrManger = new DNetRequestManager();

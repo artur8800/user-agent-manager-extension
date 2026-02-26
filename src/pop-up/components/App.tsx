@@ -1,9 +1,9 @@
-import logo from '@/assets/logo.svg';
-import { Toaster } from '@/pop-up/components/ui/atoms/sonner';
-
 import { TooltipProvider } from './ui/atoms/tooltip';
 import AppBar from './ui/molecules/app-bar';
 import ViewToggle from './widgets/view-toggle';
+
+import logo from '@/assets/logo.svg';
+import { Toaster } from '@/pop-up/components/ui/atoms/sonner';
 
 function App() {
   return (

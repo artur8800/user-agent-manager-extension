@@ -1,7 +1,8 @@
+import { useUnit } from 'effector-react';
+
 import AppUaInfo from '@entities/app-ua-info';
 import { AppUaTable } from '@entities/app-ua-table';
 import AppTableHeading from '@ui/molecules/app-table-heading';
-import { useUnit } from 'effector-react';
 
 import { $appView, toggleView } from './model';
 
