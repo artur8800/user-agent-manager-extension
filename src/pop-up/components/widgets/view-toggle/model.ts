@@ -1,6 +1,6 @@
 import { createEvent, createStore } from 'effector';
 
-type AppView = 'main' | 'list';
+import { AppView } from '@/types/ui';
 
 export const changeAppView = createEvent<AppView>();
 export const toggleView = createEvent();

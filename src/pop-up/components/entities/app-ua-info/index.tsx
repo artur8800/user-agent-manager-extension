@@ -1,6 +1,6 @@
-import { BadgeAlertIcon } from '@/pop-up/components/ui/atoms/badge-alert';
-import { Button } from '@/pop-up/components/ui/atoms/button';
-import { Item, ItemActions, ItemContent, ItemMedia, ItemTitle } from '@/pop-up/components/ui/atoms/item';
+import { BadgeAlertIcon } from '@ui/atoms/badge-alert';
+import { Button } from '@ui/atoms/button';
+import { Item, ItemActions, ItemContent, ItemMedia, ItemTitle } from '@ui/atoms/item';
 
 function AppUaInfo({ buttonCallback }: { buttonCallback?: () => void }) {
   return (
@@ -14,8 +14,11 @@ function AppUaInfo({ buttonCallback }: { buttonCallback?: () => void }) {
       <ItemContent className="text-center">
         <ItemTitle>The default browser User-Agent is being used</ItemTitle>
       </ItemContent>
+
       <ItemActions>
-        <Button onClick={buttonCallback}>Choose user agent</Button>
+        <Button className="min-w-[160px]" onClick={buttonCallback}>
+          Choose user agent
+        </Button>
       </ItemActions>
     </Item>
   );

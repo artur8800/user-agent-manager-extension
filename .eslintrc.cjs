@@ -1,15 +1,23 @@
+const { settings } = require('node:cluster');
+const { version } = require('node:os');
+
 module.exports = {
   root: true,
   env: { browser: true, es2020: true },
-  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'plugin:react-hooks/recommended'],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react-hooks/recommended',
+  ],
+  ignorePatterns: ['dist', '.eslintrc.cjs', 'src/pop-up/components/ui/atoms'],
   parser: '@typescript-eslint/parser',
   plugins: ['react-refresh', 'unused-imports', 'simple-import-sort'],
   rules: {
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     'react-refresh/only-export-components': 0,
     'unused-imports/no-unused-imports': 'error',
-
+    'react/react-in-jsx-scope': 'off',
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
     'unused-imports/no-unused-vars': [
@@ -63,5 +71,10 @@ module.exports = {
   parserOptions: {
     sourceType: 'module',
     ecmaVersion: 'latest',
+  },
+  settings: {
+    react: {
+      version: '18',
+    },
   },
 };
